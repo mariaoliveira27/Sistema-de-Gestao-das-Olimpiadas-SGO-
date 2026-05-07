@@ -10,7 +10,7 @@ Projeto desenvolvido para a disciplina de Projeto de Software.
 
 ---
 
-## Objetivo
+# Objetivo
 
 O Sistema de Gestão das Olimpíadas (SGO) tem como objetivo gerenciar:
 
