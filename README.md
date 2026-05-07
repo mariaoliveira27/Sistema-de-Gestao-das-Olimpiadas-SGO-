@@ -2,6 +2,14 @@
 
 Projeto desenvolvido para a disciplina de Projeto de Software.
 
+---
+
+# Autores
+- Maria Clara Gomes 
+- Sofia Vasconcelos
+
+---
+
 ## Objetivo
 
 O Sistema de Gestão das Olimpíadas (SGO) tem como objetivo gerenciar:
@@ -11,6 +19,13 @@ O Sistema de Gestão das Olimpíadas (SGO) tem como objetivo gerenciar:
 - Alocação de locais
 - Registro de resultados
 - Relatórios de medalhas
+
+---
+
+# Tecnologias
+    PlantUML
+    UML
+    GitHub
 
 ---
 
