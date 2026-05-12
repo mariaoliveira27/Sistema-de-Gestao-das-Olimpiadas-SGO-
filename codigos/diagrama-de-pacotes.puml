@@ -1,0 +1,95 @@
+@startuml
+
+skinparam packageStyle rectangle
+skinparam linetype ortho
+
+package "Apresentacao" {
+
+  class TelaLogin
+  class TelaCompeticoes
+  class TelaAtletas
+  class TelaResultados
+  class Dashboard
+
+}
+
+package "Controladores" {
+
+  class CompeticaoController
+  class AtletaController
+  class ResultadoController
+  class RelatorioController
+  class LocalController
+
+}
+
+package "Servicos" {
+
+  class CompeticaoService
+  class AtletaService
+  class ResultadoService
+  class RelatorioService
+  class LocalService
+
+}
+
+package "Dominio" {
+
+  class Competicao
+  class Atleta
+  class Pais
+  class Resultado
+  class Local
+  class Medalha
+
+}
+
+package "Persistencia" {
+
+  interface CompeticaoRepository
+  interface AtletaRepository
+  interface ResultadoRepository
+  interface PaisRepository
+  interface LocalRepository
+
+}
+
+package "BancoDeDados" {
+
+  class MySQL
+
+}
+
+' RELACIONAMENTOS ENTRE PACOTES
+Apresentacao ..> Controladores
+
+Controladores ..> Servicos
+
+Servicos ..> Dominio
+
+Servicos ..> Persistencia
+
+Persistencia ..> BancoDeDados
+
+' RELACIONAMENTOS INTERNOS
+CompeticaoController --> CompeticaoService
+
+AtletaController --> AtletaService
+
+ResultadoController --> ResultadoService
+
+RelatorioController --> RelatorioService
+
+LocalController --> LocalService
+
+CompeticaoService --> CompeticaoRepository
+
+AtletaService --> AtletaRepository
+
+ResultadoService --> ResultadoRepository
+
+RelatorioService --> PaisRepository
+
+LocalService --> LocalRepository
+
+@enduml

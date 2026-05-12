@@ -1,0 +1,88 @@
+@startuml
+
+skinparam linetype ortho
+
+node "Usuário Organizador" {
+
+  artifact "Navegador Web"
+
+}
+
+node "Usuário Árbitro" {
+
+  artifact "Aplicação Web"
+
+}
+
+node "Usuário Espectador" {
+
+  artifact "Browser Mobile"
+
+}
+
+cloud "Internet" {
+
+}
+
+node "Servidor Frontend" {
+
+  artifact "React SPA"
+
+}
+
+node "Servidor Backend" {
+
+  component "API REST - Spring Boot"
+
+  component "Módulo de Segurança JWT"
+
+  component "Serviço de Relatórios"
+
+}
+
+database "Servidor MySQL" {
+
+  database "Banco SGO"
+
+}
+
+node "Servidor de Backup" {
+
+  artifact "Backup Diário"
+
+}
+
+cloud "Serviços Externos" {
+
+  component "API Olímpica"
+
+  component "SMTP E-mail"
+
+}
+
+' CLIENTES
+"Navegador Web" --> Internet
+"Aplicação Web" --> Internet
+"Browser Mobile" --> Internet
+
+' INTERNET -> FRONTEND
+Internet --> "React SPA"
+
+' FRONTEND -> BACKEND
+"React SPA" --> "API REST - Spring Boot"
+
+' BACKEND -> DATABASE
+"API REST - Spring Boot" --> "Banco SGO"
+
+' BACKEND -> SEGURANÇA
+"Módulo de Segurança JWT" ..> "API REST - Spring Boot"
+
+' BACKEND -> EXTERNOS
+"Serviço de Relatórios" --> "SMTP E-mail"
+
+"API REST - Spring Boot" --> "API Olímpica"
+
+' BACKUP
+"Banco SGO" --> "Backup Diário"
+
+@enduml

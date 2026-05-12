@@ -1,0 +1,99 @@
+@startuml
+
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+package "Frontend Web" {
+
+  [Tela de Login]
+  [Dashboard]
+  [Tela de Competições]
+  [Tela de Atletas]
+  [Tela de Resultados]
+  [Tela de Relatórios]
+
+}
+
+node "Backend API REST" {
+
+  component "Auth Controller"
+  component "Competicao Controller"
+  component "Atleta Controller"
+  component "Resultado Controller"
+  component "Relatorio Controller"
+
+  component "Competicao Service"
+  component "Atleta Service"
+  component "Resultado Service"
+  component "Relatorio Service"
+
+  component "JWT Security"
+  component "Validador de Horários"
+
+}
+
+database "MySQL Database" {
+
+  component "Tabela Competicao"
+  component "Tabela Atleta"
+  component "Tabela Pais"
+  component "Tabela Resultado"
+  component "Tabela Local"
+
+}
+
+cloud "Serviços Externos" {
+
+  component "API de Ranking Olímpico"
+  component "Serviço de E-mail"
+
+}
+
+' FRONTEND -> BACKEND
+[Tela de Login] --> "Auth Controller"
+
+[Dashboard] --> "Relatorio Controller"
+
+[Tela de Competições] --> "Competicao Controller"
+
+[Tela de Atletas] --> "Atleta Controller"
+
+[Tela de Resultados] --> "Resultado Controller"
+
+[Tela de Relatórios] --> "Relatorio Controller"
+
+' CONTROLLERS -> SERVICES
+"Competicao Controller" --> "Competicao Service"
+
+"Atleta Controller" --> "Atleta Service"
+
+"Resultado Controller" --> "Resultado Service"
+
+"Relatorio Controller" --> "Relatorio Service"
+
+' SERVICES -> COMPONENTES
+"Competicao Service" --> "Validador de Horários"
+
+"Resultado Service" --> "API de Ranking Olímpico"
+
+"Relatorio Service" --> "Serviço de E-mail"
+
+' SERVICES -> DATABASE
+"Competicao Service" --> "Tabela Competicao"
+
+"Atleta Service" --> "Tabela Atleta"
+
+"Atleta Service" --> "Tabela Pais"
+
+"Resultado Service" --> "Tabela Resultado"
+
+"Competicao Service" --> "Tabela Local"
+
+' SEGURANÇA
+"JWT Security" ..> "Auth Controller"
+
+"JWT Security" ..> "Competicao Controller"
+
+"JWT Security" ..> "Resultado Controller"
+
+@enduml
