@@ -1,0 +1,37 @@
+@startuml
+
+node "Dispositivo do Organizador" {
+
+  artifact "Browser Web"
+
+}
+
+node "Dispositivo do Árbitro" {
+
+  artifact "Browser Web"
+
+}
+
+node "Dispositivo do Espectador" {
+
+  artifact "Browser Web"
+
+}
+
+node "Servidor de Aplicação" {
+
+  component "Sistema SGO"
+
+}
+
+database "Servidor de Banco de Dados" {
+
+  component "MySQL"
+
+}
+
+"Browser Web" --> "Sistema SGO"
+
+"Sistema SGO" --> "MySQL"
+
+@enduml
