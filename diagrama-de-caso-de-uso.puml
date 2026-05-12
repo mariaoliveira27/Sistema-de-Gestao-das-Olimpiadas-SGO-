@@ -1,0 +1,41 @@
+@startuml
+left to right direction
+
+actor Organizador
+actor Arbitro
+actor Espectador
+
+rectangle "Sistema de Gestão das Olimpíadas (SGO)" {
+
+  usecase "Cadastrar Competição" as UC1
+  usecase "Editar Competição" as UC2
+  usecase "Excluir Competição" as UC3
+  usecase "Inscrever Atleta" as UC4
+  usecase "Associar Atleta ao País" as UC5
+  usecase "Alocar Local" as UC6
+  usecase "Consultar Agenda Olímpica" as UC7
+  usecase "Registrar Resultados" as UC8
+  usecase "Gerar Relatório de Medalhas" as UC9
+  usecase "Consultar Ranking de Países" as UC10
+  usecase "Validar Conflito de Horário" as UC11
+
+}
+
+Organizador --> UC1
+Organizador --> UC2
+Organizador --> UC3
+Organizador --> UC4
+Organizador --> UC5
+Organizador --> UC6
+Organizador --> UC9
+
+Arbitro --> UC8
+
+Espectador --> UC7
+Espectador --> UC10
+
+UC8 ..> UC9 : <<include>>
+
+UC11 <.. UC6 : <<extend>>
+
+@enduml
