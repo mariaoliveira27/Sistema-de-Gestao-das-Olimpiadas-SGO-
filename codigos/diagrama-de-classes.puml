@@ -1,0 +1,82 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Pais {
+  - id : int
+  - nome : String
+  - sigla : String
+  - quantidadeOuro : int
+  - quantidadePrata : int
+  - quantidadeBronze : int
+}
+
+class Atleta {
+  - id : int
+  - nome : String
+  - idade : int
+  - genero : String
+}
+
+class Competicao {
+  - id : int
+  - modalidade : String
+  - data : Date
+  - horario : String
+  - status : String
+}
+
+class Local {
+  - id : int
+  - nome : String
+  - endereco : String
+  - capacidade : int
+}
+
+class Resultado {
+  - id : int
+  - primeiroLugar : String
+  - segundoLugar : String
+  - terceiroLugar : String
+}
+
+class RelatorioMedalhas {
+  + gerarRelatorio()
+}
+
+' ==========================
+' HERANÇA (GENERALIZAÇÃO)
+' ==========================
+class Pessoa {
+  - id : int
+  - nome : String
+}
+
+Pessoa <|-- Atleta
+
+' ==========================
+' ASSOCIAÇÕES
+' ==========================
+Pais "1" -- "*" Atleta : representa
+
+Competicao "*" -- "*" Atleta : inscritos
+
+Competicao "1" --> "1" Local : ocorre em
+
+RelatorioMedalhas ..> Pais : consulta
+
+' ==========================
+' AGREGAÇÃO
+' Um país agrega atletas.
+' Os atletas podem existir independentemente do país.
+' ==========================
+Pais "1" o-- "*" Atleta : delegação
+
+' ==========================
+' COMPOSIÇÃO
+' O resultado pertence exclusivamente à competição.
+' Se a competição for removida, o resultado também é.
+' ==========================
+Competicao "1" *-- "1" Resultado : possui
+
+@enduml
